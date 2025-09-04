@@ -11,7 +11,6 @@ public class LoginPage {
     private String usernameXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]";
     private String passwordXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]";
     private String loginBtnXpath = "//android.view.View[@content-desc=\"Log in\"]";
-    private String errorMsg = "(//android.view.View[@content-desc=\"Enter your email\"])[2]";
     private String userNotExistXpath = "//android.widget.ImageView[@content-desc=\"User does not exist, Sign Up instead\"]";
     private String invalidPasswordXpath = "//android.widget.ImageView[@content-desc=\"Password must be at least 8 characters long\"]";
 
@@ -72,5 +71,9 @@ public class LoginPage {
             return false;
         }
     }
+    
+    
+ 
+    
 
 }

@@ -8,6 +8,8 @@ import utils.ExcelUtils;
 
 public class LoginTest extends BaseClass {
 
+    boolean waitBeforeRestart = false; // Flag banaya
+
     // DataProvider: Excel se data load karega
     @DataProvider(name = "loginData")
     public Object[][] getLoginData() {
@@ -15,7 +17,6 @@ public class LoginTest extends BaseClass {
         String sheetName = "login_sheet";
         return ExcelUtils.getSheetData(excelPath, sheetName);
     }
-    
     
     @Test(dataProvider = "loginData")
     public void testLoginFromExcel(String username, String password, String expectedResult) {
@@ -25,96 +26,53 @@ public class LoginTest extends BaseClass {
         boolean userNotExist = login.isUserNotExistErrorVisible();
         boolean invalidPassword = login.isInvalidPasswordVisible();
 
-        if (expectedResult.equalsIgnoreCase("Fail")) {
-            if (userNotExist || invalidPassword) {
-                System.out.println("Test Passed → Login failed as expected for: " + username);
-            } else {
-                System.out.println(" Test Failed → Expected Fail but login went ahead: " + username);
-                org.testng.Assert.fail("Expected Fail, but user seems valid.");
-            }
-        } else if (expectedResult.equalsIgnoreCase("Pass")) {
-            if (!userNotExist && !invalidPassword) {
-                System.out.println(" Test Passed → Login successful for: " + username);
-            } else {
-                System.out.println("Test Failed → Expected Pass but got login error: " + username);
-                org.testng.Assert.fail("Expected Pass, but login failed.");
-            }
-        } else {
-            System.out.println(" Unknown ExpectedResult value in Excel: " + expectedResult);
-        }
-        
-      
-    }
-    
-    @AfterMethod
-    public void backToLoginScreen() {
-        String appPackage = "com.dignitestudios.vybex";
-        driver.terminateApp(appPackage);
-        driver.activateApp(appPackage);
-        System.out.println("App restarted → Back to Login screen");
-    }
-
-/*
-    @Test(dataProvider = "loginData")
-    public void testLoginFromExcel(String username, String password, String expectedResult) {
-        LoginPage login = new LoginPage(driver);
-        login.login(username, password);
-
-        boolean userNotExist = login.isUserNotExistErrorVisible();
+        boolean loginFailed = userNotExist || invalidPassword;
+        boolean loginSuccess = !loginFailed;
 
         if (expectedResult.equalsIgnoreCase("Fail")) {
-            if (userNotExist) {
-                System.out.println(" Test Passed → User does not exist as expected: " + username);
+            if (loginFailed) {
+                System.out.println("✅ Test Passed → Login failed as expected for: " + username);
+                waitBeforeRestart = false; // Fail case → no wait
             } else {
-                System.out.println("❌ Test Failed → Expected Fail but login went ahead: " + username);
-                org.testng.Assert.fail("Expected Fail, but user seems valid.");
+                System.out.println("⚠ Expected Fail, but login succeeded for: " + username);
+                waitBeforeRestart = false;
             }
-        } else if (expectedResult.equalsIgnoreCase("Pass")) {
-            if (!userNotExist) {
-                System.out.println(" Test Passed → Login successful for: " + username);
+        } 
+        else if (expectedResult.equalsIgnoreCase("Pass")) {
+            if (loginSuccess) {
+                System.out.println("✅ Test Passed → Login successful for: " + username);
+                waitBeforeRestart = true; // Pass case → wait 5 sec
             } else {
-                System.out.println(" Test Failed → Expected Pass but got user-not-exist error: " + username);
-                org.testng.Assert.fail("Expected Pass, but user does not exist.");
+                System.out.println("❌ Test Failed → Expected Pass but login failed for: " + username);
+                waitBeforeRestart = false;
+                org.testng.Assert.fail("Expected Pass, but got login error.");
             }
-        } else {
+        } 
+        else {
             System.out.println("⚠ Unknown ExpectedResult value in Excel: " + expectedResult);
+            waitBeforeRestart = false;
         }
     }
-
-    // Har test ke baad wapas Login screen
+/*
     @AfterMethod
-    public void backToLoginScreen() {
+    public void backToLoginScreen() throws InterruptedException {
+        if (waitBeforeRestart) {
+            System.out.println("⏳ Waiting 5 seconds before restarting app...");
+            Thread.sleep(5000); // Sirf Pass case me wait karega
+        }
+
         String appPackage = "com.dignitestudios.vybex";
         driver.terminateApp(appPackage);
         driver.activateApp(appPackage);
         System.out.println("🔄 App restarted → Back to Login screen");
     }
-
+}
 */
-
-/*
-@Test(dataProvider = "loginData")
-public void testLoginFromExcel(String username, String password, String expectedResult) {
-    LoginPage login = new LoginPage(driver);
-    login.login(username, password);
-
-    // Check if "User does not exist" error is visible
-    if (login.isUserNotExistErrorVisible()) {
-        System.out.println(" User does not exist → " + username);
-    } else {
-        System.out.println(" Login attempted with: " + username + " / " + password);
-    }
+    @AfterMethod public void backToLoginScreen() 
+    { 
+    	String appPackage = "com.dignitestudios.vybex";
+    driver.terminateApp(appPackage); 
+    driver.activateApp(appPackage);
+    System.out.println("App restarted → Back to Login screen"); 
+    } 
 }
-
-
-    
-    @AfterMethod
-    public void backToLoginScreen() {
-        String appPackage = "com.dignitestudios.vybex";
-        driver.terminateApp(appPackage);
-        driver.activateApp(appPackage);
-        System.out.println("App restarted → Back to Login screen");
-    }
-    */
-}
-
