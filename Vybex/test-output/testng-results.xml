@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-09-03T18:48:34 PKT" name="Default suite" finished-at="2025-09-03T18:50:43 PKT" duration-ms="128581">
+    <groups>
+    </groups>
+    <test started-at="2025-09-03T18:48:34 PKT" name="Default test" finished-at="2025-09-03T18:50:43 PKT" duration-ms="128581">
+      <class name="tests.LoginTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.LoginTest@56cdfb3b]" started-at="2025-09-03T18:48:34 PKT" name="setup" finished-at="2025-09-03T18:48:38 PKT" duration-ms="3735" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="testLoginFromExcel(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.LoginTest@56cdfb3b]" started-at="2025-09-03T18:48:38 PKT" name="testLoginFromExcel" data-provider="loginData" finished-at="2025-09-03T18:49:25 PKT" duration-ms="46338" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[mark@yopmail.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Test@123]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFromExcel -->
+        <test-method is-config="true" signature="backToLoginScreen()[pri:0, instance:tests.LoginTest@56cdfb3b]" started-at="2025-09-03T18:49:25 PKT" name="backToLoginScreen" finished-at="2025-09-03T18:49:25 PKT" duration-ms="551" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- backToLoginScreen -->
+        <test-method signature="testLoginFromExcel(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.LoginTest@56cdfb3b]" started-at="2025-09-03T18:49:25 PKT" name="testLoginFromExcel" data-provider="loginData" finished-at="2025-09-03T18:49:55 PKT" duration-ms="30214" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[alison@yopmail.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Test@123]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Fail]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFromExcel -->
+        <test-method is-config="true" signature="backToLoginScreen()[pri:0, instance:tests.LoginTest@56cdfb3b]" started-at="2025-09-03T18:49:55 PKT" name="backToLoginScreen" finished-at="2025-09-03T18:49:56 PKT" duration-ms="493" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- backToLoginScreen -->
+        <test-method signature="testLoginFromExcel(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.LoginTest@56cdfb3b]" started-at="2025-09-03T18:49:56 PKT" name="testLoginFromExcel" data-provider="loginData" finished-at="2025-09-03T18:50:41 PKT" duration-ms="45276" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[mark@yopmail.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Test123]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Fail]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Expected Fail, but user seems valid.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Expected Fail, but user seems valid.
+at org.testng.Assert.fail(Assert.java:111)
+at tests.LoginTest.testLoginFromExcel(LoginTest.java:33)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginFromExcel -->
+        <test-method is-config="true" signature="backToLoginScreen()[pri:0, instance:tests.LoginTest@56cdfb3b]" started-at="2025-09-03T18:50:41 PKT" name="backToLoginScreen" finished-at="2025-09-03T18:50:42 PKT" duration-ms="525" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- backToLoginScreen -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.LoginTest@56cdfb3b]" started-at="2025-09-03T18:50:42 PKT" name="teardown" finished-at="2025-09-03T18:50:42 PKT" duration-ms="808" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- tests.LoginTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
